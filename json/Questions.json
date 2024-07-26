@@ -1,0 +1,192 @@
+[
+  {
+    "question": "Qual linguagem é conhecida como a linguagem da web?",
+    "options": ["Python", "C++", "JavaScript", "Java"],
+    "answer": "JavaScript"
+  },
+  {
+    "question": "Qual a saída do seguinte código JavaScript: console.log(typeof null);",
+    "options": ["null", "object", "undefined", "number"],
+    "answer": "object"
+  },
+  {
+    "question": "Qual a função de uma variável no código?",
+    "options": [
+      "Armazenar dados",
+      "Executar loops",
+      "Definir estilo",
+      "Criar classes"
+    ],
+    "answer": "Armazenar dados"
+  },
+  {
+    "question": "Qual dos seguintes é um banco de dados NoSQL?",
+    "options": ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
+    "answer": "MongoDB"
+  },
+  {
+    "question": "Em HTML, qual tag é usada para criar um link?",
+    "options": ["<div>", "<p>", "<a>", "<link>"],
+    "answer": "<a>"
+  },
+  {
+    "question": "Qual a função do CSS?",
+    "options": [
+      "Criar interatividade",
+      "Definir o estilo da página",
+      "Armazenar dados",
+      "Gerenciar servidores"
+    ],
+    "answer": "Definir o estilo da página"
+  },
+  {
+    "question": "O que significa a sigla SQL?",
+    "options": [
+      "Structured Query Language",
+      "Simple Query Language",
+      "Structured Quick Language",
+      "Simple Quick Language"
+    ],
+    "answer": "Structured Query Language"
+  },
+  {
+    "question": "Qual linguagem de programação é conhecida por seu uso em data science e machine learning?",
+    "options": ["Ruby", "Python", "C#", "Swift"],
+    "answer": "Python"
+  },
+  {
+    "question": "Qual método JavaScript é usado para converter uma string em um inteiro?",
+    "options": ["parseInt()", "toInt()", "convertInt()", "stringToInt()"],
+    "answer": "parseInt()"
+  },
+  {
+    "question": "O que significa a sigla JSON?",
+    "options": [
+      "JavaScript Object Notation",
+      "JavaScript Oriented Notation",
+      "Java Serialized Object Notation",
+      "Java Serialized Oriented Notation"
+    ],
+    "answer": "JavaScript Object Notation"
+  },
+  {
+    "question": "Qual é a função de um servidor web?",
+    "options": [
+      "Processar dados",
+      "Armazenar arquivos",
+      "Servir páginas da web",
+      "Gerenciar redes"
+    ],
+    "answer": "Servir páginas da web"
+  },
+  {
+    "question": "Em CSS, como você pode alterar a cor do texto?",
+    "options": ["color", "text-color", "font-color", "background-color"],
+    "answer": "color"
+  },
+  {
+    "question": "Qual a saída do seguinte código Python: print(2 ** 3)?",
+    "options": ["6", "8", "9", "12"],
+    "answer": "8"
+  },
+  {
+    "question": "Qual é o comando Git para criar um novo branch?",
+    "options": [
+      "git branch new_branch",
+      "git create new_branch",
+      "git new branch",
+      "git checkout new_branch"
+    ],
+    "answer": "git branch new_branch"
+  },
+  {
+    "question": "O que faz o método Array.prototype.map() em JavaScript?",
+    "options": [
+      "Modifica o array original",
+      "Retorna um novo array",
+      "Filtra elementos do array",
+      "Adiciona elementos ao array"
+    ],
+    "answer": "Retorna um novo array"
+  },
+  {
+    "question": "Qual linguagem é tipicamente usada para consultas em bancos de dados?",
+    "options": ["Java", "C#", "SQL", "PHP"],
+    "answer": "SQL"
+  },
+  {
+    "question": "Qual o comando para exibir uma mensagem de alerta em JavaScript?",
+    "options": ["prompt()", "confirm()", "alert()", "message()"],
+    "answer": "alert()"
+  },
+  {
+    "question": "Qual a saída do seguinte código JavaScript: console.log(5 == '5');",
+    "options": ["true", "false", "undefined", "null"],
+    "answer": "true"
+  },
+  {
+    "question": "Qual é a forma correta de declarar uma variável em JavaScript?",
+    "options": ["var name;", "let name;", "const name;", "Todas as anteriores"],
+    "answer": "Todas as anteriores"
+  },
+  {
+    "question": "Em qual linguagem de programação o operador === é usado?",
+    "options": ["Python", "Java", "C++", "JavaScript"],
+    "answer": "JavaScript"
+  },
+  {
+    "question": "Qual é a extensão de arquivo comum para folhas de estilo em cascata?",
+    "options": [".html", ".css", ".js", ".json"],
+    "answer": ".css"
+  },
+  {
+    "question": "Qual é o método para adicionar um elemento ao final de um array em JavaScript?",
+    "options": ["add()", "append()", "push()", "insert()"],
+    "answer": "push()"
+  },
+  {
+    "question": "Qual é a função do doctype no HTML?",
+    "options": [
+      "Definir a versão do HTML",
+      "Linkar um arquivo CSS",
+      "Executar um script",
+      "Definir a estrutura de dados"
+    ],
+    "answer": "Definir a versão do HTML"
+  },
+  {
+    "question": "Qual tag HTML é usada para definir um item de lista?",
+    "options": ["<ul>", "<ol>", "<li>", "<list>"],
+    "answer": "<li>"
+  },
+  {
+    "question": "Qual propriedade CSS é usada para alterar o tamanho da fonte?",
+    "options": ["font-size", "font-weight", "text-size", "text-weight"],
+    "answer": "font-size"
+  },
+  {
+    "question": "Qual é a saída do seguinte código JavaScript: console.log('5' + 3);",
+    "options": ["8", "53", "undefined", "error"],
+    "answer": "53"
+  },
+  {
+    "question": "Qual é o resultado de 3 + 2 * 2 em JavaScript?",
+    "options": ["10", "7", "8", "5"],
+    "answer": "7"
+  },
+  {
+    "question": "Qual atributo HTML é usado para definir o caminho de uma imagem?",
+    "options": ["src", "href", "link", "path"],
+    "answer": "src"
+  },
+  {
+    "question": "Qual é a saída do seguinte código Python: print('Hello' + 'World')?",
+    "options": ["HelloWorld", "Hello World", "Hello+World", "SyntaxError"],
+    "answer": "HelloWorld"
+  },
+  {
+    "question": "Em CSS, qual propriedade é usada para alterar a cor de fundo de um elemento?",
+    "options": ["background-color", "color", "bg-color", "background"],
+    "answer": "background-color"
+  }
+]
