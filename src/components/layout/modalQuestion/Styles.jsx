@@ -73,6 +73,34 @@ const DivInfoResultQuestions = styled.div`
   }
 `;
 
+const DivResultFinal = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #2c343c;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    p {
+      font-size: 20px;
+      color: gray;
+    }
+    strong {
+      font-size: 50px;
+      color: purple;
+    }
+  }
+`;
+
 export {
   DivToglleQuestionOrQuit,
   BtnOpcoes,
@@ -80,4 +108,5 @@ export {
   Pergunta,
   DivQuestion,
   DivInfoResultQuestions,
+  DivResultFinal,
 };

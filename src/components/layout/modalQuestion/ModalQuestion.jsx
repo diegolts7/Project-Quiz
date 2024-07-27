@@ -7,6 +7,7 @@ import {
   Pergunta,
   DivQuestion,
   DivInfoResultQuestions,
+  DivResultFinal,
 } from "./Styles";
 import EmbaralharArray from "../../../functions/embaralharArray/EmbaralharArray";
 
@@ -60,9 +61,17 @@ const ModalQuestion = () => {
   return (
     <DivQuestion>
       {isExitQuestions ? (
-        <p>
-          {acertos}/{currentQuestion + 1}
-        </p>
+        <DivResultFinal>
+          <h2>Resultado final</h2>
+          <div>
+            <p>Acertos</p>
+            <strong>{acertos}</strong>
+          </div>
+          <div>
+            <p>Questões feitas</p>
+            <strong>{currentQuestion + 1}</strong>
+          </div>
+        </DivResultFinal>
       ) : (
         <>
           {questions.length > 0 && (
