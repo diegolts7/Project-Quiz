@@ -26,11 +26,11 @@ const DivOpcoes = styled.div`
     font-weight: 550;
     font-size: 18px;
     color: #fffafa;
-    background-color: lightseagreen;
+    background-color: purple;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+
     &:hover {
-      background-color: #fffafa;
-      border: 1px solid orangered;
-      color: orangered;
+      background-color: #c504c5;
       transition: 0.3s;
     }
   }

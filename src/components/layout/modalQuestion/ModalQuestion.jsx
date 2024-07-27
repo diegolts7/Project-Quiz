@@ -6,7 +6,9 @@ import {
   DivOpcoes,
   Pergunta,
   DivQuestion,
+  DivInfoResultQuestions,
 } from "./Styles";
+import EmbaralharArray from "../../../functions/embaralharArray/EmbaralharArray";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -14,10 +16,11 @@ const ModalQuestion = () => {
   const [opcaoClicada, setOpcaoClicada] = useState(false);
   const [acertos, setAcertos] = useState(0);
   const [isExitQuestions, setIsExitQuestions] = useState(false);
+  const [opcoesEmbaralhadas, setOpcoesEmbaralhadas] = useState([]);
 
   async function pegarDados() {
     let dados = await fetchJSON();
-    setQuestions(dados);
+    setQuestions(dados.slice(0, 10));
   }
 
   const handleOptionClick = (index) => {
@@ -32,9 +35,27 @@ const ModalQuestion = () => {
     }
   };
 
+  function ProximaPergunta() {
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion((beforeQuestion) => beforeQuestion + 1);
+    } else {
+      setIsExitQuestions(true);
+    }
+
+    setOpcaoClicada(false);
+  }
+
   useEffect(() => {
     pegarDados();
   }, []);
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      setOpcoesEmbaralhadas(
+        EmbaralharArray(questions[currentQuestion].options)
+      );
+    }
+  }, [questions, currentQuestion]);
 
   return (
     <DivQuestion>
@@ -46,37 +67,34 @@ const ModalQuestion = () => {
         <>
           {questions.length > 0 && (
             <>
-              <p>{`${currentQuestion + 1} / ${questions.length}`}</p>
-              <p>{`Acerou : ${acertos}`}</p>
+              <DivInfoResultQuestions>
+                <p>{`${currentQuestion + 1} / ${questions.length}`}</p>
+                <p>{acertos > 0 && `Acertos : ${acertos}`}</p>
+              </DivInfoResultQuestions>
+
               <Pergunta>{questions[currentQuestion].question}</Pergunta>
               <DivOpcoes>
-                {questions[currentQuestion].options.map((option, index) => (
-                  <BtnOpcoes
-                    key={index}
-                    onClick={() => handleOptionClick(index)}
-                    opcaoClicada={opcaoClicada}
-                    opcaoCerta={
-                      option === questions[currentQuestion].answer &&
-                      opcaoClicada
-                    }
-                  >
-                    {option}
-                  </BtnOpcoes>
-                ))}
+                {opcoesEmbaralhadas.length > 0 &&
+                  opcoesEmbaralhadas.map((option, index) => (
+                    <BtnOpcoes
+                      key={index}
+                      onClick={() => handleOptionClick(index)}
+                      opcaoClicada={opcaoClicada}
+                      opcaoCerta={
+                        option === questions[currentQuestion].answer &&
+                        opcaoClicada
+                      }
+                    >
+                      {option}
+                    </BtnOpcoes>
+                  ))}
               </DivOpcoes>
             </>
           )}
 
           {opcaoClicada && (
             <DivToglleQuestionOrQuit>
-              <button
-                onClick={() => {
-                  setCurrentQuestion((beforeQuestion) => beforeQuestion + 1);
-                  setOpcaoClicada(false);
-                }}
-              >
-                Próxima pergunta
-              </button>
+              <button onClick={ProximaPergunta}>Próxima pergunta</button>
               <button onClick={() => setIsExitQuestions(true)}>
                 Sair do quiz
               </button>
