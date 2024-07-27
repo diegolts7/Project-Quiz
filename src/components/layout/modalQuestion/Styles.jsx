@@ -95,8 +95,29 @@ const DivResultFinal = styled.div`
       color: gray;
     }
     strong {
-      font-size: 50px;
+      font-size: 55px;
       color: purple;
+    }
+  }
+  button {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 16px;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    svg {
+      font-size: 20px;
+    }
+    &:hover {
+      background-color: #2c343c;
+      transition: 0.3s;
     }
   }
 `;

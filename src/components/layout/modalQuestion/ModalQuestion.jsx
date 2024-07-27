@@ -10,6 +10,7 @@ import {
   DivResultFinal,
 } from "./Styles";
 import EmbaralharArray from "../../../functions/embaralharArray/EmbaralharArray";
+import { FaXTwitter } from "react-icons/fa6";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -71,6 +72,27 @@ const ModalQuestion = () => {
             <p>Questões feitas</p>
             <strong>{currentQuestion + 1}</strong>
           </div>
+          <button
+            onClick={() =>
+              window.open(
+                `https://twitter.com/intent/tweet?text=Meu%20resultado%20no%20quiz%20:%20${
+                  acertos > 0 ? acertos : ""
+                }%20${
+                  acertos === 0
+                    ? "nenhum%20acerto"
+                    : acertos === 1
+                    ? "acerto"
+                    : "acertos"
+                }%20de%20${
+                  currentQuestion + 1
+                }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://www.seusite.com/artigo`,
+                "_blank"
+              )
+            }
+          >
+            Compartilhar
+            <FaXTwitter />
+          </button>
         </DivResultFinal>
       ) : (
         <>
