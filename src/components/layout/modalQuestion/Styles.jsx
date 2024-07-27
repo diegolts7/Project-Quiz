@@ -84,21 +84,27 @@ const DivResultFinal = styled.div`
     font-weight: 600;
     color: #2c343c;
   }
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    p {
-      font-size: 20px;
-      color: gray;
-    }
-    strong {
-      font-size: 55px;
-      color: purple;
-    }
+`;
+
+const DivAcertosErros = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  p {
+    font-size: 20px;
+    color: gray;
   }
+  strong {
+    font-size: 55px;
+    color: purple;
+  }
+`;
+
+const DivResultFinalBtn = styled.div`
+  display: flex;
+  gap: 1rem;
   button {
     padding: 12px;
     display: flex;
@@ -130,4 +136,6 @@ export {
   DivQuestion,
   DivInfoResultQuestions,
   DivResultFinal,
+  DivResultFinalBtn,
+  DivAcertosErros,
 };

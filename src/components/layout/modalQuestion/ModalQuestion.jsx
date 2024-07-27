@@ -1,5 +1,5 @@
 import fetchJSON from "../../../functions/fetchJSON/FetchJSON";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   DivToglleQuestionOrQuit,
   BtnOpcoes,
@@ -8,9 +8,13 @@ import {
   DivQuestion,
   DivInfoResultQuestions,
   DivResultFinal,
+  DivResultFinalBtn,
+  DivAcertosErros,
 } from "./Styles";
 import EmbaralharArray from "../../../functions/embaralharArray/EmbaralharArray";
 import { FaXTwitter } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { ContextResult } from "../../../context/ResultContext/ResultContext";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -19,6 +23,9 @@ const ModalQuestion = () => {
   const [acertos, setAcertos] = useState(0);
   const [isExitQuestions, setIsExitQuestions] = useState(false);
   const [opcoesEmbaralhadas, setOpcoesEmbaralhadas] = useState([]);
+  const navigate = useNavigate();
+  const { toggleAcertosTotais, toggleQuestoesRespondidas } =
+    useContext(ContextResult);
 
   async function pegarDados() {
     let dados = await fetchJSON();
@@ -33,7 +40,9 @@ const ModalQuestion = () => {
         questions[currentQuestion].answer
       ) {
         setAcertos((acertosBefore) => acertosBefore + 1);
+        toggleAcertosTotais();
       }
+      toggleQuestoesRespondidas();
     }
   };
 
@@ -64,35 +73,40 @@ const ModalQuestion = () => {
       {isExitQuestions ? (
         <DivResultFinal>
           <h2>Resultado final</h2>
-          <div>
+          <DivAcertosErros>
             <p>Acertos</p>
             <strong>{acertos}</strong>
-          </div>
-          <div>
+          </DivAcertosErros>
+          <DivAcertosErros>
             <p>Questões feitas</p>
             <strong>{currentQuestion + 1}</strong>
-          </div>
-          <button
-            onClick={() =>
-              window.open(
-                `https://twitter.com/intent/tweet?text=Meu%20resultado%20no%20quiz%20:%20${
-                  acertos > 0 ? acertos : ""
-                }%20${
-                  acertos === 0
-                    ? "nenhum%20acerto"
-                    : acertos === 1
-                    ? "acerto"
-                    : "acertos"
-                }%20de%20${
-                  currentQuestion + 1
-                }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://www.seusite.com/artigo`,
-                "_blank"
-              )
-            }
-          >
-            Compartilhar
-            <FaXTwitter />
-          </button>
+          </DivAcertosErros>
+          <DivResultFinalBtn>
+            <button
+              onClick={() =>
+                window.open(
+                  `https://twitter.com/intent/tweet?text=Meu%20resultado%20no%20quiz%20:%20${
+                    acertos > 0 ? acertos : ""
+                  }%20${
+                    acertos === 0
+                      ? "nenhum%20acerto"
+                      : acertos === 1
+                      ? "acerto"
+                      : "acertos"
+                  }%20de%20${
+                    currentQuestion + 1
+                  }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://www.seusite.com/artigo`,
+                  "_blank"
+                )
+              }
+            >
+              Compartilhar
+              <FaXTwitter />
+            </button>
+            <button onClick={() => navigate("/", { replace: true })}>
+              Menu inicial
+            </button>
+          </DivResultFinalBtn>
         </DivResultFinal>
       ) : (
         <>
