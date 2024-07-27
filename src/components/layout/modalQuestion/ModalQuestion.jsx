@@ -1,5 +1,5 @@
 import fetchJSON from "../../../functions/fetchJSON/FetchJSON";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import {
   DivToglleQuestionOrQuit,
   BtnOpcoes,
@@ -15,6 +15,8 @@ import EmbaralharArray from "../../../functions/embaralharArray/EmbaralharArray"
 import { FaXTwitter } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { ContextResult } from "../../../context/ResultContext/ResultContext";
+import Audio from "../../../assets/sons/audio.mp3";
+import Audio2 from "../../../assets/sons/silvio-santos-certa-resposta.mp3";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -26,6 +28,8 @@ const ModalQuestion = () => {
   const navigate = useNavigate();
   const { toggleAcertosTotais, toggleQuestoesRespondidas } =
     useContext(ContextResult);
+  const audioRefAcertou = useRef(null);
+  const audioRefErrou = useRef(null);
 
   async function pegarDados() {
     let dados = await fetchJSON();
@@ -41,8 +45,11 @@ const ModalQuestion = () => {
       ) {
         setAcertos((acertosBefore) => acertosBefore + 1);
         toggleAcertosTotais();
+        audioRefAcertou.current.play();
+      } else {
+        audioRefErrou.current.play();
+        toggleQuestoesRespondidas();
       }
-      toggleQuestoesRespondidas();
     }
   };
 
@@ -70,6 +77,8 @@ const ModalQuestion = () => {
 
   return (
     <DivQuestion>
+      <audio ref={audioRefErrou} src={Audio} preload="auto" />
+      <audio ref={audioRefAcertou} src={Audio2} preload="auto" />
       {isExitQuestions ? (
         <DivResultFinal>
           <h2>Resultado final</h2>
