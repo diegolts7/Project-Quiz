@@ -48,8 +48,8 @@ const ModalQuestion = () => {
         audioRefAcertou.current.play();
       } else {
         audioRefErrou.current.play();
-        toggleQuestoesRespondidas();
       }
+      toggleQuestoesRespondidas();
     }
   };
 
@@ -104,7 +104,7 @@ const ModalQuestion = () => {
                       : "acertos"
                   }%20de%20${
                     currentQuestion + 1
-                  }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://www.seusite.com/artigo`,
+                  }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://project-quiz-three.vercel.app/`,
                   "_blank"
                 )
               }

@@ -23,7 +23,6 @@ const ResultContext = ({ children }) => {
     if (localStorage.getItem("questoesCertas") !== null) {
       let nQuestoesCertas = Number(localStorage.getItem("questoesCertas"));
       localStorage.setItem("questoesCertas", `${nQuestoesCertas + 1}`);
-      console.log(nQuestoesCertas);
     } else if (acertosTotais > 0) {
       localStorage.setItem("questoesCertas", `${acertosTotais}`);
     }
