@@ -1,6 +1,8 @@
 async function fetchJSON() {
   try {
-    let data = await fetch("/json/Questions.json");
+    let data = await fetch(
+      "https://gerenciador-projetos-server.vercel.app/quizQuests"
+    );
     let dados = await data.json();
     return dados;
   } catch (error) {
