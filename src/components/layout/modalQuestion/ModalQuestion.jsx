@@ -49,7 +49,7 @@ const ModalQuestion = () => {
       } else {
         audioRefErrou.current.play();
       }
-      toggleQuestoesRespondidas();
+      toggleQuestoesRespondidas(questions[currentQuestion]);
     }
   };
 

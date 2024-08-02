@@ -8,35 +8,36 @@ const ResultContext = ({ children }) => {
       ? Number(localStorage.getItem("questoesCertas"))
       : 0
   );
-  const [questoesRespondidas, setQuestoesRespondidas] = useState(0);
+  const [questoesRespondidas, setQuestoesRespondidas] = useState(
+    localStorage.getItem("questoesRespondidas") !== null
+      ? JSON.parse(localStorage.getItem("questoesRespondidas"))
+      : []
+  );
 
   function toggleAcertosTotais() {
     setAcertosTotais((acertosTotaisBefore) => acertosTotaisBefore + 1);
   }
-  function toggleQuestoesRespondidas() {
-    setQuestoesRespondidas(
-      (questoesRespondidasBefore) => questoesRespondidasBefore + 1
-    );
+  function toggleQuestoesRespondidas(questaoRespondida) {
+    setQuestoesRespondidas((questoesRespondidasBefore) => [
+      ...questoesRespondidasBefore,
+      questaoRespondida,
+    ]);
   }
 
   useEffect(() => {
-    if (localStorage.getItem("questoesCertas") !== null) {
-      let nQuestoesCertas = Number(localStorage.getItem("questoesCertas"));
-      localStorage.setItem("questoesCertas", `${nQuestoesCertas + 1}`);
-    } else if (acertosTotais > 0) {
+    if (acertosTotais > 0) {
       localStorage.setItem("questoesCertas", `${acertosTotais}`);
     }
   }, [acertosTotais]);
 
-  /*useEffect(() => {
-    if (localStorage.getItem("questoesRespondidas") !== null) {
-      let nQuestoesCertas = JSON.parse(localStorage.getItem("questoesRespondidas"));
-      localStorage.setItem("questoesCertas", `${nQuestoesCertas + 1}`);
-      console.log(nQuestoesCertas);
-    } else if (acertosTotais > 0) {
-      localStorage.setItem("questoesCertas", `${acertosTotais}`);
+  useEffect(() => {
+    if (questoesRespondidas.length > 0) {
+      localStorage.setItem(
+        "questoesRespondidas",
+        JSON.stringify(questoesRespondidas)
+      );
     }
-  }, [questoesRespondidas]);*/
+  }, [questoesRespondidas]);
 
   return (
     <ContextResult.Provider
