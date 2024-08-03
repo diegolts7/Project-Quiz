@@ -13,6 +13,13 @@ const ResultContext = ({ children }) => {
       ? JSON.parse(localStorage.getItem("questoesRespondidas"))
       : []
   );
+  const [isQuestionsBlocked, setIsQuestionsBlocked] = useState(false);
+
+  /*function toggleIsQuestionsBlocked() {
+    setIsQuestionsBlocked((isQuestionsBlockedBefore) =>
+      isQuestionsBlockedBefore === true ? false : true
+    );
+  }*/
 
   function toggleAcertosTotais() {
     setAcertosTotais((acertosTotaisBefore) => acertosTotaisBefore + 1);
@@ -46,6 +53,8 @@ const ResultContext = ({ children }) => {
         toggleAcertosTotais,
         questoesRespondidas,
         toggleQuestoesRespondidas,
+        isQuestionsBlocked,
+        setIsQuestionsBlocked,
       }}
     >
       {children}

@@ -20,7 +20,11 @@ import Audio2 from "../../../assets/sons/silvio-santos-certa-resposta.mp3";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    localStorage.getItem("currentQuestion") !== null
+      ? Number(localStorage.getItem("currentQuestion"))
+      : 0
+  );
   const [opcaoClicada, setOpcaoClicada] = useState(false);
   const [acertos, setAcertos] = useState(0);
   const [isExitQuestions, setIsExitQuestions] = useState(false);
@@ -49,6 +53,15 @@ const ModalQuestion = () => {
       } else {
         audioRefErrou.current.play();
       }
+
+      if (currentQuestion + 1 === questions.length) {
+        localStorage.setItem("currentQuestion", `${0}`);
+
+        localStorage.setItem("lastUpdate", new Date().toISOString());
+      } else {
+        localStorage.setItem("currentQuestion", `${currentQuestion + 1}`);
+      }
+
       toggleQuestoesRespondidas(questions[currentQuestion]);
     }
   };

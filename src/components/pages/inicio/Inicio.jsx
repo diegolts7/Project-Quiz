@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ContextResult } from "../../../context/ResultContext/ResultContext";
+import { useContext, useEffect, useState } from "react";
 
 const DivInicio = styled.div`
   display: flex;
@@ -38,15 +40,37 @@ const DivOpcoes = styled.div`
 
 const Inicio = () => {
   const navigate = useNavigate();
+  const { isQuestionsBlocked, setIsQuestionsBlocked } =
+    useContext(ContextResult);
+  const [horasParaAtualizar, setHorasParaAtualizar] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("lastUpdate") !== null) {
+      let diferencaLastUpdateHoras =
+        (new Date(new Date().toISOString()) -
+          new Date(localStorage.getItem("lastUpdate"))) /
+        (1000 * 60 * 60);
+      if (diferencaLastUpdateHoras >= 24) {
+        setIsQuestionsBlocked(false);
+      } else {
+        setIsQuestionsBlocked(true);
+      }
+      setHorasParaAtualizar(24 - Math.floor(diferencaLastUpdateHoras));
+    }
+  }, []);
   return (
     <DivInicio>
       <h1>Quiz da programação</h1>
       <DivOpcoes>
-        <input
-          value={"Iniciar"}
-          type="button"
-          onClick={() => navigate("/quests")}
-        />
+        {!isQuestionsBlocked ? (
+          <input
+            value={"Iniciar"}
+            type="button"
+            onClick={() => navigate("/quests")}
+          />
+        ) : (
+          <p>Proxima atualização em {horasParaAtualizar} horas</p>
+        )}
         <input
           value={"Resultados"}
           type="button"
