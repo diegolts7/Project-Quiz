@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ContextResult } from "../../../context/ResultContext/ResultContext";
 import { useContext, useEffect, useState } from "react";
+import { MdOutlineTimer } from "react-icons/md";
 
 const DivInicio = styled.div`
   display: flex;
@@ -38,6 +39,21 @@ const DivOpcoes = styled.div`
   }
 `;
 
+const InfoAtualizarQuestions = styled.div`
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 0.3rem;
+  flex-direction: column;
+  svg {
+    font-size: 25px;
+  }
+`;
+
 const Inicio = () => {
   const navigate = useNavigate();
   const { isQuestionsBlocked, setIsQuestionsBlocked } =
@@ -69,7 +85,10 @@ const Inicio = () => {
             onClick={() => navigate("/quests")}
           />
         ) : (
-          <p>Proxima atualização em {horasParaAtualizar} horas</p>
+          <InfoAtualizarQuestions>
+            <p>Novas questões em {horasParaAtualizar} horas</p>
+            <MdOutlineTimer />
+          </InfoAtualizarQuestions>
         )}
         <input
           value={"Resultados"}

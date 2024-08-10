@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { FaXTwitter } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import { ContextResult } from "../../../context/ResultContext/ResultContext";
-import { useContext } from "react";
 
 const DivResultFinal = styled.div`
   display: flex;
@@ -86,7 +84,7 @@ const ModalResultado = ({ acertos, questoesRespondidadas }) => {
                   ? "acerto"
                   : "acertos"
               }%20de%20${
-                currentQuestion + 1
+                questoesRespondidadas + 1
               }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://project-quiz-three.vercel.app/`,
               "_blank"
             )

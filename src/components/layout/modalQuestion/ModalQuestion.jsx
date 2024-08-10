@@ -13,6 +13,7 @@ import { ContextResult } from "../../../context/ResultContext/ResultContext";
 import Audio from "../../../assets/sons/audio.mp3";
 import Audio2 from "../../../assets/sons/silvio-santos-certa-resposta.mp3";
 import ModalResultado from "../modalResultado/ModalResultado";
+import SelecionaQuestoes from "../../../functions/selecionaQuestoes/SelecionaQuestoes";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -33,7 +34,12 @@ const ModalQuestion = () => {
 
   async function pegarDados() {
     let dados = await fetchJSON();
-    setQuestions(dados.slice(0, 10));
+    let questoesRespondidadas = localStorage.getItem("questoesRespondidas");
+    if (questoesRespondidadas !== null) {
+      setQuestions(SelecionaQuestoes(dados, JSON.parse(questoesRespondidadas)));
+    } else {
+      setQuestions(dados.slice(0, 10));
+    }
   }
 
   const handleOptionClick = (index) => {
