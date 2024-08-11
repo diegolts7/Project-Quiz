@@ -83,9 +83,7 @@ const ModalResultado = ({ acertos, questoesRespondidadas }) => {
                   : acertos === 1
                   ? "acerto"
                   : "acertos"
-              }%20de%20${
-                questoesRespondidadas + 1
-              }%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://project-quiz-three.vercel.app/`,
+              }%20de%20${questoesRespondidadas}%20questões.%20Vejam%20quanto%20vocês%20conseguem%20&url=https://project-quiz-three.vercel.app/`,
               "_blank"
             )
           }

@@ -14,6 +14,7 @@ import Audio from "../../../assets/sons/audio.mp3";
 import Audio2 from "../../../assets/sons/silvio-santos-certa-resposta.mp3";
 import ModalResultado from "../modalResultado/ModalResultado";
 import SelecionaQuestoes from "../../../functions/selecionaQuestoes/SelecionaQuestoes";
+import Loading from "../loading/Loading";
 
 const ModalQuestion = () => {
   const [questions, setQuestions] = useState([]);
@@ -31,9 +32,11 @@ const ModalQuestion = () => {
   const audioRefAcertou = useRef(null);
   const audioRefErrou = useRef(null);
   const [questoesFeitas, setQuestoesFeitas] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function pegarDados() {
     let dados = await fetchJSON();
+    setIsLoading(false);
     let questoesRespondidadas = localStorage.getItem("questoesRespondidas");
     if (questoesRespondidadas !== null) {
       setQuestions(SelecionaQuestoes(dados, JSON.parse(questoesRespondidadas)));
@@ -92,54 +95,60 @@ const ModalQuestion = () => {
   }, [questions, currentQuestion]);
 
   return (
-    <DivQuestion>
-      <audio ref={audioRefErrou} src={Audio} preload="auto" />
-      <audio ref={audioRefAcertou} src={Audio2} preload="auto" />
-      {isExitQuestions ? (
-        <ModalResultado
-          acertos={acertos}
-          questoesRespondidadas={questoesFeitas}
-        />
+    <>
+      {isLoading ? (
+        <Loading />
       ) : (
-        <>
-          {questions.length > 0 && (
+        <DivQuestion>
+          <audio ref={audioRefErrou} src={Audio} preload="auto" />
+          <audio ref={audioRefAcertou} src={Audio2} preload="auto" />
+          {isExitQuestions ? (
+            <ModalResultado
+              acertos={acertos}
+              questoesRespondidadas={questoesFeitas}
+            />
+          ) : (
             <>
-              <DivInfoResultQuestions>
-                <p>{`${currentQuestion + 1} / ${questions.length}`}</p>
-                <p>{acertos > 0 && `Acertos : ${acertos}`}</p>
-              </DivInfoResultQuestions>
+              {questions.length > 0 && (
+                <>
+                  <DivInfoResultQuestions>
+                    <p>{`${currentQuestion + 1} / ${questions.length}`}</p>
+                    <p>{acertos > 0 && `Acertos : ${acertos}`}</p>
+                  </DivInfoResultQuestions>
 
-              <Pergunta>{questions[currentQuestion].question}</Pergunta>
-              <DivOpcoes>
-                {opcoesEmbaralhadas.length > 0 &&
-                  opcoesEmbaralhadas.map((option, index) => (
-                    <BtnOpcoes
-                      key={index}
-                      onClick={() => handleOptionClick(index)}
-                      opcaoClicada={opcaoClicada}
-                      opcaoCerta={
-                        option === questions[currentQuestion].answer &&
-                        opcaoClicada
-                      }
-                    >
-                      {option}
-                    </BtnOpcoes>
-                  ))}
-              </DivOpcoes>
+                  <Pergunta>{questions[currentQuestion].question}</Pergunta>
+                  <DivOpcoes>
+                    {opcoesEmbaralhadas.length > 0 &&
+                      opcoesEmbaralhadas.map((option, index) => (
+                        <BtnOpcoes
+                          key={index}
+                          onClick={() => handleOptionClick(index)}
+                          opcaoClicada={opcaoClicada}
+                          opcaoCerta={
+                            option === questions[currentQuestion].answer &&
+                            opcaoClicada
+                          }
+                        >
+                          {option}
+                        </BtnOpcoes>
+                      ))}
+                  </DivOpcoes>
+                </>
+              )}
+
+              {opcaoClicada && (
+                <DivToglleQuestionOrQuit>
+                  <button onClick={ProximaPergunta}>Próxima pergunta</button>
+                  <button onClick={() => setIsExitQuestions(true)}>
+                    Sair do quiz
+                  </button>
+                </DivToglleQuestionOrQuit>
+              )}
             </>
           )}
-
-          {opcaoClicada && (
-            <DivToglleQuestionOrQuit>
-              <button onClick={ProximaPergunta}>Próxima pergunta</button>
-              <button onClick={() => setIsExitQuestions(true)}>
-                Sair do quiz
-              </button>
-            </DivToglleQuestionOrQuit>
-          )}
-        </>
+        </DivQuestion>
       )}
-    </DivQuestion>
+    </>
   );
 };
 
